@@ -1,6 +1,7 @@
 class PinsController < ApplicationController
   before_action :set_pin, only: [:show, :update, :destroy]
-
+  skip_before_action :authorized, only: [:index, :create]
+  
   # GET /pins
   def index
     @pins = Pin.all
