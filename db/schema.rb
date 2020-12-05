@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_02_184122) do
+ActiveRecord::Schema.define(version: 2020_12_04_193729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "board_pins", force: :cascade do |t|
+    t.bigint "board_id", null: false
+    t.bigint "pin_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["board_id"], name: "index_board_pins_on_board_id"
+    t.index ["pin_id"], name: "index_board_pins_on_pin_id"
+  end
+
+  create_table "boards", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_boards_on_user_id"
+  end
 
   create_table "pins", force: :cascade do |t|
     t.string "category"
@@ -25,15 +41,6 @@ ActiveRecord::Schema.define(version: 2020_12_02_184122) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "saves", force: :cascade do |t|
-    t.bigint "pin_id", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["pin_id"], name: "index_saves_on_pin_id"
-    t.index ["user_id"], name: "index_saves_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "username"
@@ -43,6 +50,6 @@ ActiveRecord::Schema.define(version: 2020_12_02_184122) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "saves", "pins"
-  add_foreign_key "saves", "users"
+  add_foreign_key "board_pins", "pins"
+  add_foreign_key "boards", "users"
 end

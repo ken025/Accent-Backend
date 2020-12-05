@@ -1,5 +1,6 @@
 class BoardPinsController < ApplicationController
   before_action :set_board_pin, only: [:show, :update, :destroy]
+  skip_before_action :authorized, only: [:create, :index]
 
   # GET /board_pins
   def index
@@ -46,6 +47,6 @@ class BoardPinsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def board_pin_params
-      params.require(:board_pin).permit(:boards_id, :pin_id)
+      params.require(:board_pin).permit(:board_id, :pin_id)
     end
 end

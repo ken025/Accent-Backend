@@ -1,4 +1,4 @@
 class BoardPin < ApplicationRecord
-  belongs_to :boards
-  belongs_to :pin
+  belongs_to :board, optional: true
+  belongs_to :pin, optional: true
 end

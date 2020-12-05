@@ -1,4 +1,4 @@
 class BoardSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :user_id
   has_one :user
 end

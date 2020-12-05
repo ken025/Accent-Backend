@@ -1,5 +1,5 @@
 class BoardPinSerializer < ActiveModel::Serializer
-  attributes :id
-  has_one :boards
+  attributes :id, :board_id, :pin_id
+  has_one :board
   has_one :pin
 end

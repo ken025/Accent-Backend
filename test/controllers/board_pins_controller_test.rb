@@ -12,7 +12,7 @@ class BoardPinsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create board_pin" do
     assert_difference('BoardPin.count') do
-      post board_pins_url, params: { board_pin: { boards_id: @board_pin.boards_id, pin_id: @board_pin.pin_id } }, as: :json
+      post board_pins_url, params: { board_pin: { board_id: @board_pin.board_id, pin_id: @board_pin.pin_id } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class BoardPinsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update board_pin" do
-    patch board_pin_url(@board_pin), params: { board_pin: { boards_id: @board_pin.boards_id, pin_id: @board_pin.pin_id } }, as: :json
+    patch board_pin_url(@board_pin), params: { board_pin: { board_id: @board_pin.board_id, pin_id: @board_pin.pin_id } }, as: :json
     assert_response 200
   end
 
