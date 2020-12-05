@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-    has_many :boards
+    has_many :favorites
+    has_many :pins, through: :favorites
 
     has_secure_password
     
